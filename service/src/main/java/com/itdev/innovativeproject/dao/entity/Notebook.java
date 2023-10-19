@@ -1,6 +1,7 @@
 package com.itdev.innovativeproject.dao.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Notebook")
@@ -36,11 +37,11 @@ public class Notebook implements BaseEntity<Integer> {
     }
 
     // methods
-
+    @Override
     public Integer getId() {
         return id;
     }
-
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -78,5 +79,18 @@ public class Notebook implements BaseEntity<Integer> {
                 ", computerDetailsId=" + computerDetails +
                 ", diagonal=" + diagonal +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Notebook)) return false;
+        Notebook notebook = (Notebook) o;
+        return diagonal == notebook.diagonal && Objects.equals(id, notebook.id) && Objects.equals(production, notebook.production) && Objects.equals(computerDetails, notebook.computerDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, production, computerDetails, diagonal);
     }
 }

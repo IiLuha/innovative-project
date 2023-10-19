@@ -1,6 +1,7 @@
 package com.itdev.innovativeproject.dao.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Monitor")
@@ -38,11 +39,11 @@ public class Monitor implements BaseEntity<Integer> {
     }
 
     // methods
-
+    @Override
     public Integer getId() {
         return id;
     }
-
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
@@ -89,5 +90,18 @@ public class Monitor implements BaseEntity<Integer> {
                 ", displayTypeId=" + displayType +
                 ", frequency=" + frequency +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Monitor)) return false;
+        Monitor monitor = (Monitor) o;
+        return diagonalMon == monitor.diagonalMon && frequency == monitor.frequency && Objects.equals(id, monitor.id) && Objects.equals(production, monitor.production) && Objects.equals(displayType, monitor.displayType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, production, displayType, diagonalMon, frequency);
     }
 }

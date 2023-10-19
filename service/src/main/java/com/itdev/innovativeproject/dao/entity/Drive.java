@@ -1,6 +1,7 @@
 package com.itdev.innovativeproject.dao.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name="Drive")
@@ -32,10 +33,12 @@ public class Drive implements BaseEntity<Integer> {
         this.readSpeed = readSpeed;
     }
     // methods
+    @Override
     public Integer getId()
     {
         return id;
     }
+    @Override
     public void setId(Integer id)
     {
         this.id=id;
@@ -85,4 +88,16 @@ public class Drive implements BaseEntity<Integer> {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Drive)) return false;
+        Drive drive = (Drive) o;
+        return capacity == drive.capacity && readSpeed == drive.readSpeed && Objects.equals(id, drive.id) && Objects.equals(production, drive.production) && Objects.equals(disk_type, drive.disk_type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, production, disk_type, capacity, readSpeed);
+    }
 }
