@@ -4,12 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Drive")
-public class Drive
-{
+public class Drive implements BaseEntity<Integer> {
     @Id //primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate
     @Column (name ="ID")
-    private int id;
+    private Integer id;
     @OneToOne
     @JoinColumn(name="Production_ID")
     private Production production;
@@ -33,11 +32,11 @@ public class Drive
         this.readSpeed = readSpeed;
     }
     // methods
-    public int getId()
+    public Integer getId()
     {
         return id;
     }
-    public void setId(int id)
+    public void setId(Integer id)
     {
         this.id=id;
     }

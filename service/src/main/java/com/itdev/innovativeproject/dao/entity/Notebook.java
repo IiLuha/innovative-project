@@ -4,18 +4,20 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Notebook")
-public class Notebook {
+public class Notebook implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
-    @Column(name = "Production_ID", unique = true, nullable = false)
-    private int productionId;
+    @OneToOne
+    @JoinColumn(name="Production_ID")
+    private Production production;
 
-    @Column(name = "ComputerDetails_ID")
-    private int computerDetailsId;
+    @ManyToOne
+    @JoinColumn(name="ComputerDetails_ID")
+    private ComputerDetails computerDetails;
 
     @Column(name = "Diagonal")
     private int diagonal;
@@ -27,36 +29,36 @@ public class Notebook {
     }
 
 
-    public Notebook(int productionId, int computerDetailsId, int diagonal) {
-        this.productionId = productionId;
-        this.computerDetailsId = computerDetailsId;
+    public Notebook(Production production, ComputerDetails computerDetails, int diagonal) {
+        this.production = production;
+        this.computerDetails = computerDetails;
         this.diagonal = diagonal;
     }
 
     // methods
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getProductionId() {
-        return productionId;
+    public Production getProduction() {
+        return production;
     }
 
-    public void setProductionId(int productionId) {
-        this.productionId = productionId;
+    public void setProduction(Production production) {
+        this.production = production;
     }
 
-    public int getComputerDetailsId() {
-        return computerDetailsId;
+    public ComputerDetails getComputerDetails() {
+        return computerDetails;
     }
 
-    public void setComputerDetailsId(int computerDetailsId) {
-        this.computerDetailsId = computerDetailsId;
+    public void setComputerDetails(ComputerDetails computerDetails) {
+        this.computerDetails = computerDetails;
     }
 
     public int getDiagonal() {
@@ -72,8 +74,8 @@ public class Notebook {
     public String toString() {
         return "Notebook{" +
                 "id=" + id +
-                ", productionId=" + productionId +
-                ", computerDetailsId=" + computerDetailsId +
+                ", productionId=" + production +
+                ", computerDetailsId=" + computerDetails +
                 ", diagonal=" + diagonal +
                 '}';
     }

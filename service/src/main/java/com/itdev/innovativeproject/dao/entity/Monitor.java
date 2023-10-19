@@ -4,21 +4,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Monitor")
-public class Monitor {
+public class Monitor implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private Integer id;
 
-    @Column(name = "Production_ID", unique = true, nullable = false)
-    private int productionId;
+    @OneToOne
+    @JoinColumn(name="Production_ID")
+    private Production production;
 
+    @ManyToOne
+    @JoinColumn(name="DisplayType_ID")
+
+    private Display_type displayType;
     @Column(name = "DiagonalMon")
     private int diagonalMon;
 
-    @Column(name = "DisplayType_ID")
-    private String displayTypeId;
 
     @Column(name = "Frequency")
     private int frequency;
@@ -28,29 +31,28 @@ public class Monitor {
     }
 
 
-    public Monitor(int productionId, int diagonalMon, String displayTypeId, int frequency) {
-        this.productionId = productionId;
+    public Monitor(Production production, int diagonalMon, Display_type displayType, int frequency) {
+        this.production = production;
         this.diagonalMon = diagonalMon;
-        this.displayTypeId = displayTypeId;
-        this.frequency = frequency;
+        this.displayType = displayType;
     }
 
     // methods
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getProductionId() {
-        return productionId;
+    public Production getProduction() {
+        return production;
     }
 
-    public void setProductionId(int productionId) {
-        this.productionId = productionId;
+    public void setProduction(Production productionId) {
+        this.production = productionId;
     }
 
     public int getDiagonalMon() {
@@ -61,12 +63,12 @@ public class Monitor {
         this.diagonalMon = diagonalMon;
     }
 
-    public String getDisplayTypeId() {
-        return displayTypeId;
+    public Display_type getDisplayType() {
+        return displayType;
     }
 
-    public void setDisplayTypeId(String displayTypeId) {
-        this.displayTypeId = displayTypeId;
+    public void setDisplayTypeId(Display_type DisplayType) {
+        this.displayType = DisplayType;
     }
 
     public int getFrequency() {
@@ -82,9 +84,9 @@ public class Monitor {
     public String toString() {
         return "Monitor{" +
                 "id=" + id +
-                ", productionId=" + productionId +
+                ", productionId=" + production +
                 ", diagonalMon=" + diagonalMon +
-                ", displayTypeId=" + displayTypeId +
+                ", displayTypeId=" + displayType +
                 ", frequency=" + frequency +
                 '}';
     }
