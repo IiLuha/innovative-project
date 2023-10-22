@@ -1,7 +1,7 @@
 package com.itdev.innovativeproject.dao.entity;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,22 +16,27 @@ public class DriveService {
         this.driveRepository = driveRepository;
     }
 
+    @Transactional
     public Drive createDrive(Drive drive) {
         return driveRepository.save(drive);
     }
 
+    @Transactional
     public List<Drive> getAllDrives() {
         return driveRepository.findAll();
     }
 
+    @Transactional
     public Drive getDriveById(Integer id) {
         return driveRepository.findByDriveId(id);
     }
 
+    @Transactional
     public void deleteDrive(Integer id) {
         driveRepository.deleteById(id);
     }
-    //methods not in Repository
+
+    @Transactional
     public List<Drive> findDrivesByCapacityRange(int minCapacity, int maxCapacity) {
         List<Drive> drives = driveRepository.findAll();
         List<Drive> result = new ArrayList<>();
@@ -45,6 +50,8 @@ public class DriveService {
 
         return result;
     }
+
+    @Transactional
     public List<Drive> findDrivesByReadSpeedGreaterThan(int minReadSpeed) {
         List<Drive> drives = driveRepository.findAll();
         List<Drive> result = new ArrayList<>();
@@ -58,7 +65,6 @@ public class DriveService {
 
         return result;
     }
-
-
 }
+
 

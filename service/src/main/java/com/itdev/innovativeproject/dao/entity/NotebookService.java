@@ -1,12 +1,13 @@
 package com.itdev.innovativeproject.dao.entity;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Import the @Transactional annotation
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional // Add @Transactional at the class level
 public class NotebookService {
 
     private final NotebookRepository notebookRepository;
@@ -44,6 +45,5 @@ public class NotebookService {
 
         return result;
     }
-
 }
 

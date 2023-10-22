@@ -1,103 +1,33 @@
 package com.itdev.innovativeproject.dao.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
-@Table(name="Drive")
+@Table(name = "Drive")
+@Data // Generates getters, setters, toString, equals, and hashCode
+@NoArgsConstructor // Generates a no-argument constructor
+@AllArgsConstructor // Generates a constructor with all parameters
 public class Drive implements BaseEntity<Integer> {
-    @Id //primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto generate
-    @Column (name ="ID")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
+
     @OneToOne
-    @JoinColumn(name="Production_ID")
+    @JoinColumn(name = "Production_ID")
     private Production production;
+
     @ManyToOne
-    @JoinColumn(name="DiskType_ID")
+    @JoinColumn(name = "DiskType_ID")
     private Disk_type disk_type;
-    @Column(name="Capacity")
+
+    @Column(name = "Capacity")
     private int capacity;
-    @Column(name="REadSpeed")
+
+    @Column(name = "REadSpeed")
     private int readSpeed;
-    // constructors
-    public Drive()
-    {
-
-    }
-    public Drive(Production productionId,Disk_type diskTypeId,int capacity,int readSpeed)
-    {
-        this.production = productionId;
-        this.disk_type = diskTypeId;
-        this.capacity = capacity;
-        this.readSpeed = readSpeed;
-    }
-    // methods
-    @Override
-    public Integer getId()
-    {
-        return id;
-    }
-    @Override
-    public void setId(Integer id)
-    {
-        this.id=id;
-    }
-    public Production getProductionId()
-    {
-        return production;
-    }
-
-    public void setProductionId(Production productionId) {
-        this.production = productionId;
-    }
-    public Disk_type getDiskTypeId()
-    {
-        return disk_type;
-    }
-    public void setDiskTypeId(Disk_type diskTypeID)
-    {
-        this.disk_type =diskTypeID;
-    }
-    public int getCapacity()
-    {
-        return capacity;
-    }
-    public void setCapacity(int capacity)
-    {
-        this.capacity = capacity;
-    }
-    public int getReadSpeed()
-    {
-        return readSpeed;
-    }
-
-    public void setReadSpeed(int readSpeed)
-    {
-        this.readSpeed = readSpeed;
-    }
-    @Override
-    public String toString()
-    {
-        return "Drive{" +
-                "id=" + id +
-                ", production=" + production +
-                ", disk_type=" + disk_type+
-                ", capacity=" + capacity +
-                ", readSpeed=" + readSpeed +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Drive)) return false;
-        Drive drive = (Drive) o;
-        return capacity == drive.capacity && readSpeed == drive.readSpeed && Objects.equals(id, drive.id) && Objects.equals(production, drive.production) && Objects.equals(disk_type, drive.disk_type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, production, disk_type, capacity, readSpeed);
-    }
 }

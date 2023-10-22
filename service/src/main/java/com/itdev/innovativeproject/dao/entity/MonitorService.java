@@ -1,12 +1,13 @@
 package com.itdev.innovativeproject.dao.entity;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Import the @Transactional annotation
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional // Add @Transactional at the class level
 public class MonitorService {
 
     private final MonitorRepository monitorRepository;
@@ -44,7 +45,7 @@ public class MonitorService {
 
         return result;
     }
-    public List<Monitor> findMonitorsByDiagonalSizeRange(int minDiagonal, int maxDiagonal) {
+    public List<Monitor> findMonitorsByDiagonalSizeRange(int minDiagonal,int maxDiagonal) {
         List<Monitor> monitors = monitorRepository.findAll();
         List<Monitor> result = new ArrayList<>();
 
@@ -70,10 +71,6 @@ public class MonitorService {
             }
         }
         return result;
-
-
-
     }
-
 }
 
