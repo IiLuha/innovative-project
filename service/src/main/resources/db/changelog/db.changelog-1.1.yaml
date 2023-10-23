@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: creating-display_type-table
+      author: ITDev
+      changes:
+        - createTable:
+            tableName: display_type
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(25)
