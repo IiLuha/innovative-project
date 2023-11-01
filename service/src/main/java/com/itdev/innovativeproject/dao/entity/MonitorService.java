@@ -1,13 +1,14 @@
 package com.itdev.innovativeproject.dao.entity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; // Import the @Transactional annotation
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional // Add @Transactional at the class level
+@Transactional(readOnly = true)
 public class MonitorService {
 
     private final MonitorRepository monitorRepository;
@@ -32,8 +33,8 @@ public class MonitorService {
     public void deleteMonitor(Integer id) {
         monitorRepository.deleteById(id);
     }
-    //methods not in Repository
-    public List<Monitor> findMonitorsByDisplayType(Display_type displayType) {
+
+    public List<Monitor> findMonitorsByDisplayType(DisplayType displayType) {
         List<Monitor> monitors = monitorRepository.findAll();
         List<Monitor> result = new ArrayList<>();
 
@@ -45,7 +46,8 @@ public class MonitorService {
 
         return result;
     }
-    public List<Monitor> findMonitorsByDiagonalSizeRange(int minDiagonal,int maxDiagonal) {
+
+    public List<Monitor> findMonitorsByDiagonalSizeRange(int minDiagonal, int maxDiagonal) {
         List<Monitor> monitors = monitorRepository.findAll();
         List<Monitor> result = new ArrayList<>();
 
@@ -58,19 +60,18 @@ public class MonitorService {
 
         return result;
     }
-    public List<Monitor> findMonitorByFrequency(int minFrequency,int maxFrequency)
-    {
-        List<Monitor> monitors= monitorRepository.findAll();
-        List<Monitor> result =new ArrayList<>();
-        for (Monitor monitor : monitors)
-        {
-            int frequency=monitor.getFrequency();
-            if (frequency >= minFrequency && frequency <= maxFrequency)
-            {
+
+    public List<Monitor> findMonitorByFrequency(int minFrequency, int maxFrequency) {
+        List<Monitor> monitors = monitorRepository.findAll();
+        List<Monitor> result = new ArrayList();
+
+        for (Monitor monitor : monitors) {
+            int frequency = monitor.getFrequency();
+            if (frequency >= minFrequency && frequency <= maxFrequency) {
                 result.add(monitor);
             }
         }
+
         return result;
     }
 }
-

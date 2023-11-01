@@ -1,13 +1,14 @@
 package com.itdev.innovativeproject.dao.entity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; // Import the @Transactional annotation
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional // Add @Transactional at the class level
+@Transactional(readOnly = true)
 public class NotebookService {
 
     private final NotebookRepository notebookRepository;
@@ -32,7 +33,7 @@ public class NotebookService {
     public void deleteNotebook(Integer id) {
         notebookRepository.deleteById(id);
     }
-    //methods not in the Repository
+
     public List<Notebook> findNotebooksWithDiagonalGreaterThan(int minimumDiagonal) {
         List<Notebook> notebooks = notebookRepository.findAll();
         List<Notebook> result = new ArrayList<>();
@@ -46,4 +47,3 @@ public class NotebookService {
         return result;
     }
 }
-

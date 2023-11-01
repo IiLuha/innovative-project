@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface Disk_typeRepository extends JpaRepository<Disk_type,Integer> {
-    Disk_type save(Disk_type disk_type);
-    List<Disk_type> findAll();
+public interface DiskTypeRepository extends JpaRepository<DiskType,Integer> {
+    DiskType save(DiskType disk_type);
+    List<DiskType> findAll();
 
     Drive findByDisk_typeId(Integer id);
 

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface Display_typeRepository extends JpaRepository<Display_type,Integer> {
-    Display_type save(Display_type display_type);
-    List<Display_type> findAll();
+public interface DisplayTypeRepository extends JpaRepository<DisplayType,Integer> {
+    DisplayType save(DisplayType display_type);
+    List<DisplayType> findAll();
 
     Drive findByDisplay_typeId(Integer id);
 

@@ -8,14 +8,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Monitor")
-@Data // Generates getters, setters, toString, equals, and hashCode
-@NoArgsConstructor // Generates a no-argument constructor
-@AllArgsConstructor // Generates a constructor with all parameters
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Monitor implements BaseEntity<Integer> {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Integer id;
 
     @OneToOne
@@ -24,11 +22,10 @@ public class Monitor implements BaseEntity<Integer> {
 
     @ManyToOne
     @JoinColumn(name = "DisplayType_ID")
-    private Display_type displayType;
+    private DisplayType displayType;
 
-    @Column(name = "DiagonalMon")
     private int diagonalMon;
 
-    @Column(name = "Frequency")
     private int frequency;
 }
+
