@@ -22,7 +22,7 @@ public class Drive implements BaseEntity<Integer> {
 
     @ManyToOne
     @JoinColumn(name = "DiskType_ID")
-    private DiskType disk_type;
+    private DiskType diskType;
 
     private int capacity;
 
