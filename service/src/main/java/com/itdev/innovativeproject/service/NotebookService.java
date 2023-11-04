@@ -1,5 +1,7 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.service;
 
+import com.itdev.innovativeproject.dao.entity.Notebook;
+import com.itdev.innovativeproject.dao.repository.NotebookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +26,6 @@ public class NotebookService {
 
     public List<Notebook> getAllNotebooks() {
         return notebookRepository.findAll();
-    }
-
-    public Notebook getNotebookById(Integer id) {
-        return notebookRepository.findByNotebookId(id);
     }
 
     public void deleteNotebook(Integer id) {

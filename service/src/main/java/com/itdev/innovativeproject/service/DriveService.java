@@ -1,5 +1,7 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.service;
 
+import com.itdev.innovativeproject.dao.entity.Drive;
+import com.itdev.innovativeproject.dao.repository.DriveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +26,6 @@ public class DriveService {
 
     public List<Drive> getAllDrives() {
         return driveRepository.findAll();
-    }
-
-    public Drive getDriveById(Integer id) {
-        return driveRepository.findByDriveId(id);
     }
 
     public void deleteDrive(Integer id) {
