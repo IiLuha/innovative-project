@@ -1,5 +1,8 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.service;
 
+import com.itdev.innovativeproject.dao.entity.DisplayType;
+import com.itdev.innovativeproject.dao.entity.Monitor;
+import com.itdev.innovativeproject.dao.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +27,6 @@ public class MonitorService {
 
     public List<Monitor> getAllMonitors() {
         return monitorRepository.findAll();
-    }
-
-    public Monitor getMonitorById(Integer id) {
-        return monitorRepository.findByMonitorId(id);
     }
 
     public void deleteMonitor(Integer id) {
