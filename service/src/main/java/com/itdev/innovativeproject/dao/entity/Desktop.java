@@ -26,7 +26,7 @@ public class Desktop implements BaseEntity<Long> {
     @JoinColumn(name = "form_factor_id")
     private FormFactor formFactor;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "Computer_details_id")
     private ComputerDetails computerDetails;
 
