@@ -7,11 +7,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Disk_type")
 @Data
-public class DiskType implements BaseEntity<Integer> {
+public class DiskType implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 }
-

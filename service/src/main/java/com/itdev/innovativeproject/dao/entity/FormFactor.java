@@ -7,11 +7,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Form_factor")
 @Data
-public class FormFactor implements BaseEntity<Integer> {
+public class FormFactor implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String name;
 }
-
