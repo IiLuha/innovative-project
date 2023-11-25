@@ -11,17 +11,15 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Drive implements BaseEntity<Integer> {
+public class Drive implements BaseEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "Production_ID")
     private Production production;
 
     @ManyToOne
-    @JoinColumn(name = "DiskType_ID")
     private DiskType diskType;
 
     private int capacity;

@@ -30,5 +30,4 @@ public class Production implements BaseEntity<Long> {
     private Double price;
     private Integer guarantee;
     private String country;
-
 }
