@@ -11,17 +11,15 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notebook implements BaseEntity<Integer> {
+public class Notebook implements BaseEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "Production_ID")
     private Production production;
 
     @ManyToOne
-    @JoinColumn(name = "ComputerDetails_ID")
     private ComputerDetails computerDetails;
 
     private int diagonal;
