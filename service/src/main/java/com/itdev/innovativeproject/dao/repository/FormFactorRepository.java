@@ -1,4 +1,4 @@
-package com.itdev.innovativeproject.dao.repository;
+package com.itdev.innovat
 
 import com.itdev.innovativeproject.dao.entity.FormFactor;
 import org.springframework.data.jpa.repository.JpaRepository;
