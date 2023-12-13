@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Drive")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Drive implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,9 +21,7 @@ public class Drive implements BaseEntity<Long> {
 
     @ManyToOne
     private DiskType diskType;
-
-    private int capacity;
-
-    private int readSpeed;
+    private Integer capacity;
+    private Integer readSpeed;
 }
 

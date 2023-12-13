@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface MonitorRepository extends JpaRepository<Monitor,Integer>{
+public interface MonitorRepository extends JpaRepository<Monitor,Long>{
 }

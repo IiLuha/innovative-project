@@ -28,7 +28,7 @@ public class DriveService {
         return driveRepository.findAll();
     }
 
-    public void deleteDrive(Integer id) {
+    public void deleteDrive(Long id) {
         driveRepository.deleteById(id);
     }
 

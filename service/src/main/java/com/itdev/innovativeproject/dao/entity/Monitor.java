@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Monitor")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Monitor implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,9 +21,7 @@ public class Monitor implements BaseEntity<Long> {
 
     @ManyToOne
     private DisplayType displayType;
-
-    private int diagonalMon;
-
-    private int frequency;
+    private Integer diagonalMon;
+    private Integer frequency;
 }
 

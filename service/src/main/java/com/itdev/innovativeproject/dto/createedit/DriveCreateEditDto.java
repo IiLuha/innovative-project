@@ -1,17 +1,16 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.dto.createedit;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
-@AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@Data
 public class DriveCreateEditDto {
+
     private final Long productionId;
     private final Long diskTypeId;
-    private final int capacity;
-    private final int readSpeed;
+    private final Integer capacity;
+    private final Integer readSpeed;
 }
 

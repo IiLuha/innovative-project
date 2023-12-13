@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Notebook")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Notebook implements BaseEntity<Long> {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,6 @@ public class Notebook implements BaseEntity<Long> {
 
     @ManyToOne
     private ComputerDetails computerDetails;
-
-    private int diagonal;
+    private Integer diagonal;
 }
 

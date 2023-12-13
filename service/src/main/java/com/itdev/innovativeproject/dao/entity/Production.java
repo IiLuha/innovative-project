@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "production")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,17 +17,12 @@ public class Production implements BaseEntity<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "serial_number", unique = true)
-    private String serialNumber;
-
     @Column(unique = true)
+    private String serialNumber;
     private String name;
-
-    @Column(name = "stock_quantity")
-    private Integer stockQuantity;
-
     private String manufacture;
-    private Double price;
+    private BigDecimal price;
+    private Integer stockQuantity;
     private Integer guarantee;
     private String country;
 }

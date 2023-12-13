@@ -1,13 +1,17 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.dto.read;
 
+import lombok.Data;
 import lombok.Value;
 
-@Value
-public class ComputerDetailsCreateEditDto {
+@Data
+public class ComputerDetailsReadDto {
+
+    private Long id;
     private String videoCard;
-    private Long diskTypeId;  // ?
+    private String diskTypeName;
     private Integer diskCapacity;
     private String processor;
     private Integer ram;
     private Integer weight;
+
 }

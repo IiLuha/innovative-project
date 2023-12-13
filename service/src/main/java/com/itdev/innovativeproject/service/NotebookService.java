@@ -28,7 +28,7 @@ public class NotebookService {
         return notebookRepository.findAll();
     }
 
-    public void deleteNotebook(Integer id) {
+    public void deleteNotebook(Long id) {
         notebookRepository.deleteById(id);
     }
 

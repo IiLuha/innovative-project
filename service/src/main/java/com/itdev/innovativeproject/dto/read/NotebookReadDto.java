@@ -1,19 +1,19 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.dto.read;
 
+import com.itdev.innovativeproject.dao.entity.ComputerDetails;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
-@ToString
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class NotebookReadDto {
+
     private final Long id;
     private final Long productionId;          // ID of the associated Production entity
-    private final ComputerDetails computerDetails;
-    private final int diagonal;
+    private final ComputerDetailsReadDto computerDetails;
+    private final Integer diagonal;
 }
 
 

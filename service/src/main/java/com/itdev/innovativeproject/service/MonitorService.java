@@ -29,7 +29,7 @@ public class MonitorService {
         return monitorRepository.findAll();
     }
 
-    public void deleteMonitor(Integer id) {
+    public void deleteMonitor(Long id) {
         monitorRepository.deleteById(id);
     }
 

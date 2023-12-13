@@ -1,12 +1,15 @@
 package com.itdev.innovativeproject.dao.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Display_type")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DisplayType implements BaseEntity<Long> {
 
     @Id

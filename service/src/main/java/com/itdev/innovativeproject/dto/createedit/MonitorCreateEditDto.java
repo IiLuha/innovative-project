@@ -1,18 +1,17 @@
-package com.itdev.innovativeproject.dao.entity;
+package com.itdev.innovativeproject.dto.createedit;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@Getter
-@ToString
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class MonitorCreateEditDto {
+
     private final Long productionId;
     private final Long displayTypeId;
-    private final int diagonalMon;
-    private final int frequency;
+    private final Integer diagonalMon;
+    private final Integer frequency;
 }
 
 
