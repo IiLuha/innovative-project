@@ -1,7 +1,6 @@
 package com.itdev.innovativeproject.dto.createedit;
 
 import lombok.Data;
-import lombok.Value;
 
 @Data
 public class DesktopCreateEditDto {

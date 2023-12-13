@@ -1,47 +1,67 @@
 package com.itdev.innovativeproject.service;
 
-import com.itdev.innovativeproject.dao.entity.Notebook;
 import com.itdev.innovativeproject.dao.repository.NotebookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.itdev.innovativeproject.dto.createedit.NotebookCreateEditDto;
+import com.itdev.innovativeproject.dto.read.NotebookReadDto;
+import com.itdev.innovativeproject.mapper.NotebookMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class NotebookService {
 
     private final NotebookRepository notebookRepository;
+    private final NotebookMapper notebookMapper;
 
-    @Autowired
-    public NotebookService(NotebookRepository notebookRepository) {
-        this.notebookRepository = notebookRepository;
+    public Page<NotebookReadDto> findAll(Pageable pageable) {
+        return notebookRepository.findAll(pageable)
+                .map(notebookMapper::notebookToDto);
+    }
+    public List<NotebookReadDto> findAll() {
+        return notebookRepository.findAll().stream()
+                .map(notebookMapper::notebookToDto)
+                .toList();
     }
 
-    public Notebook createNotebook(Notebook notebook) {
-        return notebookRepository.save(notebook);
+    public Optional<NotebookReadDto> findById(Long id) {
+        return notebookRepository.findById(id)
+                .map(notebookMapper::notebookToDto);
     }
 
-    public List<Notebook> getAllNotebooks() {
-        return notebookRepository.findAll();
+    @Transactional
+    public NotebookReadDto createNotebook (NotebookCreateEditDto notebookDto) {
+        return Optional.of(notebookDto)
+                .map(notebookMapper::dtoToNotebook)
+                .map(notebookRepository::save)
+                .map(notebookMapper::notebookToDto)
+                .orElseThrow();
     }
 
-    public void deleteNotebook(Long id) {
-        notebookRepository.deleteById(id);
+    @Transactional
+    public Optional<NotebookReadDto> updateNotebook (Long id, NotebookCreateEditDto notebookDto) {
+        if (notebookRepository.findById(id).isEmpty()) return Optional.empty();
+        return Optional.of(notebookDto)
+                .map(notebookMapper::dtoToNotebook)
+                .map(notebookRepository::saveAndFlush)
+                .map(notebookMapper::notebookToDto);
     }
 
-    public List<Notebook> findNotebooksWithDiagonalGreaterThan(int minimumDiagonal) {
-        List<Notebook> notebooks = notebookRepository.findAll();
-        List<Notebook> result = new ArrayList<>();
-
-        for (Notebook notebook : notebooks) {
-            if (notebook.getDiagonal() > minimumDiagonal) {
-                result.add(notebook);
-            }
-        }
-
-        return result;
+    @Transactional
+    public boolean deleteNotebook(Long id) {
+        return notebookRepository.findById(id)
+                .map(entity -> {
+                    notebookRepository.delete(entity);
+                    notebookRepository.flush();
+                    return true;
+                })
+                .orElse(false);
     }
 }

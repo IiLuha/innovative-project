@@ -1,11 +1,6 @@
 package com.itdev.innovativeproject.dto.read;
 
-import com.itdev.innovativeproject.dao.entity.DisplayType;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
 
 @Data
 public class MonitorReadDto {

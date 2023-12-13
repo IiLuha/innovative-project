@@ -1,6 +1,5 @@
 package com.itdev.innovativeproject;
 
-import com.itdev.innovativeproject.dao.repository.ComputerDetailsRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

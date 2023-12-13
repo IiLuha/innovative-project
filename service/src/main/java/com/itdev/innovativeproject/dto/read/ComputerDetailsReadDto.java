@@ -1,7 +1,6 @@
 package com.itdev.innovativeproject.dto.read;
 
 import lombok.Data;
-import lombok.Value;
 
 @Data
 public class ComputerDetailsReadDto {

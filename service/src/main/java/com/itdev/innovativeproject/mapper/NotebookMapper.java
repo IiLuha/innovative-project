@@ -18,9 +18,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Mapper(uses = {ComputerDetailsMapper.class}, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public abstract class NotebookMapper {

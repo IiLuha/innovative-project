@@ -1,7 +1,6 @@
 package com.itdev.innovativeproject.dto.read;
 
-import com.itdev.innovativeproject.dao.entity.DiskType;
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class DriveReadDto {

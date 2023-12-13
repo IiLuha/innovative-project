@@ -1,76 +1,67 @@
 package com.itdev.innovativeproject.service;
 
-import com.itdev.innovativeproject.dao.entity.DisplayType;
-import com.itdev.innovativeproject.dao.entity.Monitor;
 import com.itdev.innovativeproject.dao.repository.MonitorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.itdev.innovativeproject.dto.createedit.MonitorCreateEditDto;
+import com.itdev.innovativeproject.dto.read.MonitorReadDto;
+import com.itdev.innovativeproject.mapper.MonitorMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MonitorService {
 
     private final MonitorRepository monitorRepository;
+    private final MonitorMapper monitorMapper;
 
-    @Autowired
-    public MonitorService(MonitorRepository monitorRepository) {
-        this.monitorRepository = monitorRepository;
+    public Page<MonitorReadDto> findAll(Pageable pageable) {
+        return monitorRepository.findAll(pageable)
+                .map(monitorMapper::monitorToDto);
+    }
+    public List<MonitorReadDto> findAll() {
+        return monitorRepository.findAll().stream()
+                .map(monitorMapper::monitorToDto)
+                .toList();
     }
 
-    public Monitor createMonitor(Monitor monitor) {
-        return monitorRepository.save(monitor);
+    public Optional<MonitorReadDto> findById(Long id) {
+        return monitorRepository.findById(id)
+                .map(monitorMapper::monitorToDto);
     }
 
-    public List<Monitor> getAllMonitors() {
-        return monitorRepository.findAll();
+    @Transactional
+    public MonitorReadDto createMonitor (MonitorCreateEditDto monitorDto) {
+        return Optional.of(monitorDto)
+                .map(monitorMapper::dtoToMonitor)
+                .map(monitorRepository::save)
+                .map(monitorMapper::monitorToDto)
+                .orElseThrow();
     }
 
-    public void deleteMonitor(Long id) {
-        monitorRepository.deleteById(id);
+    @Transactional
+    public Optional<MonitorReadDto> updateMonitor (Long id, MonitorCreateEditDto monitorDto) {
+        if (monitorRepository.findById(id).isEmpty()) return Optional.empty();
+        return Optional.of(monitorDto)
+                .map(monitorMapper::dtoToMonitor)
+                .map(monitorRepository::saveAndFlush)
+                .map(monitorMapper::monitorToDto);
     }
 
-    public List<Monitor> findMonitorsByDisplayType(DisplayType displayType) {
-        List<Monitor> monitors = monitorRepository.findAll();
-        List<Monitor> result = new ArrayList<>();
-
-        for (Monitor monitor : monitors) {
-            if (monitor.getDisplayType().equals(displayType)) {
-                result.add(monitor);
-            }
-        }
-
-        return result;
-    }
-
-    public List<Monitor> findMonitorsByDiagonalSizeRange(int minDiagonal, int maxDiagonal) {
-        List<Monitor> monitors = monitorRepository.findAll();
-        List<Monitor> result = new ArrayList<>();
-
-        for (Monitor monitor : monitors) {
-            int diagonal = monitor.getDiagonalMon();
-            if (diagonal >= minDiagonal && diagonal <= maxDiagonal) {
-                result.add(monitor);
-            }
-        }
-
-        return result;
-    }
-
-    public List<Monitor> findMonitorByFrequency(int minFrequency, int maxFrequency) {
-        List<Monitor> monitors = monitorRepository.findAll();
-        List<Monitor> result = new ArrayList();
-
-        for (Monitor monitor : monitors) {
-            int frequency = monitor.getFrequency();
-            if (frequency >= minFrequency && frequency <= maxFrequency) {
-                result.add(monitor);
-            }
-        }
-
-        return result;
+    @Transactional
+    public boolean deleteMonitor(Long id) {
+        return monitorRepository.findById(id)
+                .map(entity -> {
+                    monitorRepository.delete(entity);
+                    monitorRepository.flush();
+                    return true;
+                })
+                .orElse(false);
     }
 }

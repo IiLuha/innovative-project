@@ -1,9 +1,6 @@
 package com.itdev.innovativeproject.mapper;
 
-import com.itdev.innovativeproject.dao.entity.DiskType;
-import com.itdev.innovativeproject.dao.entity.FormFactor;
 import com.itdev.innovativeproject.dao.entity.Drive;
-import com.itdev.innovativeproject.dao.entity.Production;
 import com.itdev.innovativeproject.dao.repository.DiskTypeRepository;
 import com.itdev.innovativeproject.dao.repository.ProductionRepository;
 import com.itdev.innovativeproject.dto.createedit.DriveCreateEditDto;
@@ -12,7 +9,6 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
