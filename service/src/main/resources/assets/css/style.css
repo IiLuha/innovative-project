@@ -1,0 +1,40 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+.card-title {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: lighter;
+    margin: 0;
+}
+.home-navbar {
+    background-color: #286090 !important;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color: #25659c !important;
+}
+
+.navbar-brand {
+    color: #fff !important;
+}
+
+.catalog-item {
+    margin: 10px 0;
+}
+
+.catalog-title h3{
+    margin-top: 0;
+}
+
+.catalog-image img {
+    margin: 0 auto;
+    display: block;
+}
+
